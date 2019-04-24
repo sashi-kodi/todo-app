@@ -1,0 +1,12 @@
+<form (ngSubmit)="addTodo(newtodo.value)" class="inputform">
+    <div class="form-group">
+      <input type="textbox" #newtodo class="form-control">
+      <input type="submit" value="Add a new Todo" class="btn btn-success add-btn">  
+    </div>
+  
+</form>
+
+<div class="item" *ngFor="let todo of todos;index as i" [ngClass]="{'complete': todo.done}">
+  <input type="checkbox" [(ngModel)]="todo.done">{{todo.task}}
+    <button class="btn btn-danger" (click)="remove(i)">Remove</button>
+</div>

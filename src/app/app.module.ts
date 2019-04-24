@@ -3,16 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TodoComponent } from './todo/todo.component';
+import {FormsModule} from '@angular/forms';
+import {TodoService} from './todo.service';
+import { DisplayTodoComponent } from './display-todo/display-todo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoComponent,
+    DisplayTodoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
