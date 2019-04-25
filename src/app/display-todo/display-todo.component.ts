@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import {Todo} from '../todo';
+import {TodoService} from '../todo.service';
 @Component({
   selector: 'app-display-todo',
   templateUrl: './display-todo.component.html',
@@ -11,7 +12,13 @@ export class DisplayTodoComponent implements OnInit {
     @Output() deleteTodo = new EventEmitter<number>();
     
     @ViewChild('newtodo') newtodo:ElementRef;
-  constructor() { }
+  constructor(private todoService: TodoService) {
+  this.todoService.messageCenter
+      .subscribe((msg)=>{
+      console.log("child" + msg);
+      }, (err)=>{
+         console.log(err);
+      });}
 
   ngOnInit() {
   }

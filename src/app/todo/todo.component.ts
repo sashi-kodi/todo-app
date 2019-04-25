@@ -11,6 +11,12 @@ import {Todo} from '../todo';
 export class TodoComponent implements OnInit {
   todos: Todo[]=[];
   constructor(private todoService: TodoService) { 
+      this.todoService.messageCenter
+      .subscribe((msg)=>{
+      console.log(msg);
+      }, (err)=>{
+         console.log(err);
+      });
   }
 
   ngOnInit(){
@@ -18,10 +24,12 @@ export class TodoComponent implements OnInit {
   }
   addNewTodo =(value)=>{
     this.todoService.addTodo(value);
+    this.todoService.sendMessage("adding a new todo");
   }
   remove = (id: number)=>{
      this.todoService.remove(id);
      this.todos = this.todoService.getData();
+     this.todoService.sendMessage("deleting a todo");
   }
 
 }
